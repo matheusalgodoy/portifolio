@@ -28,6 +28,14 @@ export const projects: Project[] = [
     link: "https://barbeariaatualizada.vercel.app"
   },
   {
+    id: "5",
+    title: "Tarefas Diárias - App iOS",
+    description: "Aplicativo mobile para gerenciamento de tarefas diárias desenvolvido para iOS. Interface clean e minimalista com tema escuro, permitindo adicionar, gerenciar e concluir tarefas de forma intuitiva.",
+    image: "/images/tarefas-diarias.png",
+    tags: ["Swift", "iOS", "UIKit", "Mobile App", "Task Management"],
+    featured: true
+  },
+  {
     id: "3",
     title: "SafeVault - Em Desenvolvimento",
     description: "Gerenciador de senhas seguro que permite organizar credenciais pessoais e profissionais em áreas distintas. Interface intuitiva para adicionar, categorizar e acessar suas informações de forma segura e eficiente.",
