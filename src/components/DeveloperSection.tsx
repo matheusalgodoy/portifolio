@@ -1,9 +1,12 @@
 import { Code, Briefcase, User, Github } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { calculateMousePosition } from "@/utils/animation";
+import { cn } from "@/lib/utils";
 
 const DeveloperSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -18,6 +21,17 @@ const DeveloperSection = () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
+
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+    setImageError(false);
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoaded(false);
+    console.error('Failed to load profile image');
+  };
 
   return (
     <section 
@@ -54,11 +68,19 @@ const DeveloperSection = () => {
           <div className="flex justify-center lg:justify-end mb-8 lg:mb-0">
             <div className="relative">
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden glass-card p-1">
-                <div className="w-full h-full rounded-full overflow-hidden">
+                <div className="w-full h-full rounded-full overflow-hidden relative">
+                  {!imageLoaded && !imageError && (
+                    <div className="absolute inset-0 bg-card animate-pulse rounded-full" />
+                  )}
                   <img 
                     src="/images/matheus.jpeg" 
                     alt="Matheus Godoy" 
-                    className="w-full h-full object-cover"
+                    onLoad={handleImageLoad}
+                    onError={handleImageError}
+                    className={cn(
+                      "w-full h-full object-cover transition-opacity duration-300",
+                      !imageLoaded && "opacity-0"
+                    )}
                   />
                 </div>
               </div>

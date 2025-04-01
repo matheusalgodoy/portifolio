@@ -10,6 +10,8 @@ interface ProjectCardProps {
 
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -34,6 +36,17 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
     setIsHovered(false);
   };
 
+  const handleImageLoad = () => {
+    setImageLoaded(true);
+    setImageError(false);
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
+    setImageLoaded(false);
+    console.error(`Failed to load image for project: ${project.title}`);
+  };
+
   return (
     <div
       ref={cardRef}
@@ -52,12 +65,18 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       {/* Project Image */}
       <div className="absolute inset-0 z-0 transition-all duration-300">
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+        {!imageLoaded && !imageError && (
+          <div className="absolute inset-0 bg-card animate-pulse" />
+        )}
         <img
           src={project.image}
           alt={project.title}
+          onLoad={handleImageLoad}
+          onError={handleImageError}
           className={cn(
             "w-full h-full object-cover transition-all duration-300",
-            isHovered ? "scale-105 blur-[1px]" : "scale-100"
+            isHovered ? "scale-105 blur-[1px]" : "scale-100",
+            !imageLoaded && "opacity-0"
           )}
         />
       </div>
@@ -89,6 +108,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           
           <a
             href={project.link || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
             className={cn(
               "inline-flex items-center text-white font-medium transform transition-all duration-200",
               isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
