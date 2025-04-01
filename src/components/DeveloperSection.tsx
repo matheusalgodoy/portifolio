@@ -56,7 +56,7 @@ const DeveloperSection = () => {
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden glass-card p-1">
                 <div className="w-full h-full rounded-full overflow-hidden">
                   <img 
-                    src="/src/assets/projects/matheus.jpeg" 
+                    src="/images/matheus.jpeg" 
                     alt="Matheus Godoy" 
                     className="w-full h-full object-cover"
                   />
