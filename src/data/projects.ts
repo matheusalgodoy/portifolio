@@ -25,7 +25,7 @@ export const projects: Project[] = [
     image: "/images/barbearia-ganso.png",
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Sistema de Agendamento"],
     featured: true,
-    link: "https://barbeariaatualizada.vercel.app/"
+    link: "https://barbeariaatualizada.vercel.app"
   },
   {
     id: "3",
