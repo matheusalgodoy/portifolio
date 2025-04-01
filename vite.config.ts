@@ -22,23 +22,24 @@ export default defineConfig(({ mode }) => ({
     outDir: 'dist',
     sourcemap: false,
     minify: 'esbuild',
-    target: 'esnext',
+    target: 'es2015',
     cssMinify: true,
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            if (id.includes('react')) {
-              return 'react-vendor';
-            }
-            if (id.includes('@radix-ui')) {
-              return 'radix-vendor';
-            }
-            return 'vendor';
-          }
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: Object.keys(require('./package.json').dependencies)
+            .filter(pkg => pkg.includes('@radix-ui'))
         }
       }
     },
     chunkSizeWarningLimit: 1000
   },
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+    exclude: ['lovable-tagger']
+  },
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' }
+  }
 }));
