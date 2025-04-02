@@ -81,24 +81,44 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         )}
         
         {project.isMobileApp ? (
-          <div className="absolute inset-0 flex items-center justify-center p-6">
+          <div className="absolute inset-0 flex items-center justify-center p-4">
             <div className={cn(
-              "relative w-[220px] h-[400px] mx-auto rounded-[2rem] overflow-hidden transition-all duration-300",
-              "border-[8px] border-gray-800 shadow-lg",
+              "relative mx-auto transition-all duration-300 w-[220px] h-[440px]",
               isHovered ? "scale-105" : "scale-100"
             )}>
-              {/* Notch for iOS feel */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-800 rounded-b-lg z-20"></div>
-              <img
-                src={project.image}
-                alt={project.title}
-                onLoad={handleImageLoad}
-                onError={handleImageError}
-                className={cn(
-                  "w-full h-full object-cover transition-all duration-300",
-                  !imageLoaded && "opacity-0"
-                )}
-              />
+              {/* iPhone frame */}
+              <div className="absolute inset-0 bg-[#1A1A1C] rounded-[40px] shadow-xl overflow-hidden">
+                {/* Bezels */}
+                <div className="absolute inset-2 rounded-[32px] border-[3px] border-[#121214] overflow-hidden">
+                  {/* Screen content */}
+                  <div className="absolute inset-0 overflow-hidden bg-black">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      onLoad={handleImageLoad}
+                      onError={handleImageError}
+                      className={cn(
+                        "w-full h-full object-cover transition-all duration-300",
+                        !imageLoaded && "opacity-0"
+                      )}
+                    />
+                  </div>
+                </div>
+                
+                {/* Dynamic Island */}
+                <div className="absolute top-[12px] left-1/2 transform -translate-x-1/2 w-[90px] h-[26px] bg-black rounded-full z-20" />
+                
+                {/* Side buttons */}
+                <div className="absolute top-[90px] -right-[4px] w-[4px] h-[60px] bg-[#2A2A2C] rounded-l-md" /> {/* Volume up */}
+                <div className="absolute top-[160px] -right-[4px] w-[4px] h-[60px] bg-[#2A2A2C] rounded-l-md" /> {/* Volume down */}
+                <div className="absolute top-[120px] -left-[4px] w-[4px] h-[80px] bg-[#2A2A2C] rounded-r-md" /> {/* Power */}
+                
+                {/* Bottom speaker and port */}
+                <div className="absolute bottom-[10px] left-1/2 transform -translate-x-1/2 w-[40%] h-[4px] bg-[#2A2A2C] rounded-full" />
+                
+                {/* Reflection overlay */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent rounded-[40px] opacity-50" />
+              </div>
             </div>
           </div>
         ) : (
