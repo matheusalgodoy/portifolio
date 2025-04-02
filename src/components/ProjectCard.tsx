@@ -52,6 +52,13 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
     console.error(`Failed to load image for project: ${project.title}`);
   };
 
+  // Get current time for status bar
+  const getCurrentTime = () => {
+    const now = new Date();
+    return now.getHours().toString().padStart(2, '0') + ":" + 
+           now.getMinutes().toString().padStart(2, '0');
+  };
+
   return (
     <div
       ref={cardRef}
@@ -92,16 +99,78 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 <div className="absolute inset-2 rounded-[32px] border-[3px] border-[#121214] overflow-hidden">
                   {/* Screen content */}
                   <div className="absolute inset-0 overflow-hidden bg-black">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      onLoad={handleImageLoad}
-                      onError={handleImageError}
-                      className={cn(
-                        "w-full h-full object-cover transition-all duration-300",
-                        !imageLoaded && "opacity-0"
-                      )}
-                    />
+                    {/* Status Bar */}
+                    <div className="absolute top-0 left-0 right-0 h-[28px] bg-[#1E1E2E] flex items-center justify-between px-6 z-30">
+                      <span className="text-white text-xs font-medium">{getCurrentTime()}</span>
+                      <div className="flex items-center space-x-1.5">
+                        <div className="w-4 h-3 flex items-end justify-end space-x-px">
+                          <div className="w-0.5 h-1.5 bg-white"></div>
+                          <div className="w-0.5 h-2 bg-white"></div>
+                          <div className="w-0.5 h-2.5 bg-white"></div>
+                          <div className="w-0.5 h-3 bg-white"></div>
+                        </div>
+                        <div className="w-4 h-3 relative">
+                          <div className="absolute right-0 top-0 h-3 w-3">
+                            <div className="absolute inset-0 border border-white rounded-full"></div>
+                            <div className="absolute inset-[3px] border border-white rounded-full"></div>
+                          </div>
+                        </div>
+                        <div className="w-6 h-3 relative">
+                          <div className="absolute inset-0 border border-white rounded-sm"></div>
+                          <div className="absolute inset-y-0 right-0 w-3 bg-white rounded-r-sm"></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="absolute inset-0 pt-[28px] pb-[80px]">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        onLoad={handleImageLoad}
+                        onError={handleImageError}
+                        className={cn(
+                          "w-full h-full object-cover transition-all duration-300",
+                          !imageLoaded && "opacity-0"
+                        )}
+                      />
+                    </div>
+                    
+                    {/* Safari URL Bar */}
+                    <div className="absolute bottom-[44px] left-2 right-2 h-[36px] bg-white rounded-lg flex items-center justify-between px-3 z-30">
+                      <div className="flex items-center">
+                        <div className="w-5 h-5 flex items-center justify-center">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#999999" strokeWidth="2" />
+                          </svg>
+                        </div>
+                        <span className="text-gray-600 text-xs ml-2">localhost</span>
+                      </div>
+                      <div className="w-5 h-5 flex items-center justify-center">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 5V19M5 12H19" stroke="#999999" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                      </div>
+                    </div>
+                    
+                    {/* Safari Bottom Navigation */}
+                    <div className="absolute bottom-0 left-0 right-0 h-[44px] bg-[#f2f2f7] border-t border-gray-200 flex items-center justify-between px-6 z-30">
+                      <div className="flex items-center space-x-10">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M15 18L9 12L15 6" stroke="#999999" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9 18L15 12L9 6" stroke="#999999" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <div className="flex items-center space-x-10">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8 12H8.01M12 12H12.01M16 12H16.01M21 12C21 16.418 16.97 20 12 20C10.5 20 9.077 19.692 7.8 19.142L3 20L4.056 16.448C3.384 15.122 3 13.65 3 12C3 7.582 7.03 4 12 4C16.97 4 21 7.582 21 12Z" stroke="#5D59FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 4V20M20 12H4" stroke="#5D59FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
@@ -115,6 +184,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 
                 {/* Bottom speaker and port */}
                 <div className="absolute bottom-[10px] left-1/2 transform -translate-x-1/2 w-[40%] h-[4px] bg-[#2A2A2C] rounded-full" />
+                
+                {/* Home indicator */}
+                <div className="absolute bottom-[6px] left-1/2 transform -translate-x-1/2 w-[30%] h-[4px] bg-white rounded-full z-30" />
                 
                 {/* Reflection overlay */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent rounded-[40px] opacity-50" />

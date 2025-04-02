@@ -35,7 +35,8 @@ export const projects: Project[] = [
     image: "/images/tarefas-diarias.png",
     tags: ["Swift", "iOS", "UIKit", "Mobile App", "Task Management"],
     featured: true,
-    isMobileApp: true
+    isMobileApp: true,
+    link: "https://cybertasks.vercel.app"
   },
   {
     id: "3",
