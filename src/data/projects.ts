@@ -6,6 +6,7 @@ export interface Project {
   tags: string[];
   link?: string;
   featured?: boolean;
+  isMobileApp?: boolean;
 }
 
 export const projects: Project[] = [
@@ -33,7 +34,8 @@ export const projects: Project[] = [
     description: "Aplicativo mobile para gerenciamento de tarefas diárias desenvolvido para iOS. Interface clean e minimalista com tema escuro, permitindo adicionar, gerenciar e concluir tarefas de forma intuitiva.",
     image: "/images/tarefas-diarias.png",
     tags: ["Swift", "iOS", "UIKit", "Mobile App", "Task Management"],
-    featured: true
+    featured: true,
+    isMobileApp: true
   },
   {
     id: "3",
@@ -41,7 +43,8 @@ export const projects: Project[] = [
     description: "Gerenciador de senhas seguro que permite organizar credenciais pessoais e profissionais em áreas distintas. Interface intuitiva para adicionar, categorizar e acessar suas informações de forma segura e eficiente.",
     image: "/images/safevault.png",
     tags: ["React Native", "TypeScript", "Criptografia", "Mobile App", "Segurança"],
-    featured: false
+    featured: false,
+    isMobileApp: true
   },
   {
     id: "4",

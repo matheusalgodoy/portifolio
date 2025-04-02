@@ -27,7 +27,12 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
     const rotateX = (y - centerY) / 20;
     const rotateY = (centerX - x) / 20;
     
-    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    if (project.isMobileApp) {
+      // Less dramatic effect for mobile apps
+      cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX/2}deg) rotateY(${rotateY/2}deg) scale3d(1.03, 1.03, 1.03)`;
+    } else {
+      cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+    }
   };
   
   const handleMouseLeave = () => {
@@ -64,25 +69,60 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
     >
       {/* Project Image */}
       <div className="absolute inset-0 z-0 transition-all duration-300">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10" />
+        <div className={cn(
+          "absolute inset-0 z-10",
+          project.isMobileApp 
+            ? "bg-gradient-to-t from-black/70 to-black/30" 
+            : "bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+        )} />
+        
         {!imageLoaded && !imageError && (
           <div className="absolute inset-0 bg-card animate-pulse" />
         )}
-        <img
-          src={project.image}
-          alt={project.title}
-          onLoad={handleImageLoad}
-          onError={handleImageError}
-          className={cn(
-            "w-full h-full object-cover transition-all duration-300",
-            isHovered ? "scale-105 blur-[1px]" : "scale-100",
-            !imageLoaded && "opacity-0"
-          )}
-        />
+        
+        {project.isMobileApp ? (
+          <div className="absolute inset-0 flex items-center justify-center p-6">
+            <div className={cn(
+              "relative w-[220px] h-[400px] mx-auto rounded-[2rem] overflow-hidden transition-all duration-300",
+              "border-[8px] border-gray-800 shadow-lg",
+              isHovered ? "scale-105" : "scale-100"
+            )}>
+              {/* Notch for iOS feel */}
+              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-800 rounded-b-lg z-20"></div>
+              <img
+                src={project.image}
+                alt={project.title}
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+                className={cn(
+                  "w-full h-full object-cover transition-all duration-300",
+                  !imageLoaded && "opacity-0"
+                )}
+              />
+            </div>
+          </div>
+        ) : (
+          <img
+            src={project.image}
+            alt={project.title}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            className={cn(
+              "w-full h-full object-cover transition-all duration-300",
+              isHovered ? "scale-105 blur-[1px]" : "scale-100",
+              !imageLoaded && "opacity-0"
+            )}
+          />
+        )}
       </div>
       
       {/* Project Content */}
-      <div className="relative z-20 h-full flex flex-col justify-end p-6 transition-all duration-200">
+      <div className={cn(
+        "relative z-20 h-full flex flex-col transition-all duration-200",
+        project.isMobileApp 
+          ? "justify-end p-6" 
+          : "justify-end p-6"
+      )}>
         <div className="transform transition-all duration-200">
           <div className="flex flex-wrap gap-2 mb-3">
             {project.tags.slice(0, 3).map((tag) => (
