@@ -11,7 +11,7 @@ export interface Project {
   showInModal?: boolean;
 }
 
-const BASE_IMAGE_PATH = "";
+const BASE_IMAGE_PATH = "/";
 
 export const projects: Project[] = [
   {
@@ -63,15 +63,15 @@ export const projects: Project[] = [
     id: "6",
     title: "Portfólio Lucas Godoy - Arquiteto e Urbanista",
     description: "Portfólio de um arquiteto e urbanista, com informações sobre projetos, serviços e contato. Interface moderna e responsiva para uma experiência de usuário excepcional. O projeto inclui uma galeria de imagens que demonstra diversos trabalhos realizados, desde projetos residenciais até comerciais, destacando a versatilidade e qualidade do profissional.",
-    image: `${BASE_IMAGE_PATH}/images/lucasgodoy/l1.png`,
+    image: `${BASE_IMAGE_PATH}/images/l1.png`,
     images: [
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/l1.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/l2.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/l3.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/l4.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/l5.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/l6.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/l7.png`
+      `${BASE_IMAGE_PATH}/images/l1.png`,
+      `${BASE_IMAGE_PATH}/images/l2.png`,
+      `${BASE_IMAGE_PATH}/images/l3.png`,
+      `${BASE_IMAGE_PATH}/images/l4.png`,
+      `${BASE_IMAGE_PATH}/images/l5.png`,
+      `${BASE_IMAGE_PATH}/images/l6.png`,
+      `${BASE_IMAGE_PATH}/images/l7.png`
     ],
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Portfólio"],
     featured: false,
