@@ -63,15 +63,15 @@ export const projects: Project[] = [
     id: "6",
     title: "Portfólio Lucas Godoy - Arquiteto e Urbanista",
     description: "Portfólio de um arquiteto e urbanista, com informações sobre projetos, serviços e contato. Interface moderna e responsiva para uma experiência de usuário excepcional. O projeto inclui uma galeria de imagens que demonstra diversos trabalhos realizados, desde projetos residenciais até comerciais, destacando a versatilidade e qualidade do profissional.",
-    image: `${BASE_IMAGE_PATH}/images/lucasgodoy/lucasgodoyl1.png`,
+    image: `${BASE_IMAGE_PATH}/images/lucasgodoy/l1.png`,
     images: [
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/lucasgodoyl1.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/lucasgodoyl2.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/lucasgodoyl3.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/lucasgodoyl4.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/lucasgodoyl5.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/lucasgodoyl6.png`,
-      `${BASE_IMAGE_PATH}/images/lucasgodoy/lucasgodoyl7.png`
+      `${BASE_IMAGE_PATH}/images/lucasgodoy/l1.png`,
+      `${BASE_IMAGE_PATH}/images/lucasgodoy/l2.png`,
+      `${BASE_IMAGE_PATH}/images/lucasgodoy/l3.png`,
+      `${BASE_IMAGE_PATH}/images/lucasgodoy/l4.png`,
+      `${BASE_IMAGE_PATH}/images/lucasgodoy/l5.png`,
+      `${BASE_IMAGE_PATH}/images/lucasgodoy/l6.png`,
+      `${BASE_IMAGE_PATH}/images/lucasgodoy/l7.png`
     ],
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Portfólio"],
     featured: false,
