@@ -1,7 +1,8 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Project } from "@/data/projects";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { AlertCircle, Loader2 } from "lucide-react";
 
 interface ProjectModalProps {
   project: Project;
@@ -12,6 +13,16 @@ interface ProjectModalProps {
 export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const [errorImages, setErrorImages] = useState<Record<string, boolean>>({});
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Reset states when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setLoadedImages({});
+      setErrorImages({});
+      setCurrentImageIndex(0);
+    }
+  }, [isOpen]);
 
   const handleImageLoad = (imagePath: string) => {
     setLoadedImages(prev => ({ ...prev, [imagePath]: true }));
@@ -22,6 +33,17 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
     setErrorImages(prev => ({ ...prev, [imagePath]: true }));
     setLoadedImages(prev => ({ ...prev, [imagePath]: false }));
     console.error(`Failed to load image: ${imagePath}`);
+  };
+
+  const retryImage = (imagePath: string) => {
+    setErrorImages(prev => ({ ...prev, [imagePath]: false }));
+    setLoadedImages(prev => ({ ...prev, [imagePath]: false }));
+    
+    // Force reload by appending timestamp
+    const img = new Image();
+    img.src = `${imagePath}?t=${Date.now()}`;
+    img.onload = () => handleImageLoad(imagePath);
+    img.onerror = () => handleImageError(imagePath);
   };
 
   return (
@@ -35,15 +57,24 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           <p className="text-muted-foreground">{project.description}</p>
           
           {project.images && project.images.length > 0 && (
-            <div className="relative w-full aspect-video bg-card">
-              <Carousel className="w-full">
+            <div className="relative w-full aspect-video bg-card rounded-lg overflow-hidden">
+              <Carousel 
+                className="w-full" 
+                currentIndex={currentImageIndex}
+                onSelect={setCurrentImageIndex}
+              >
                 <CarouselContent>
                   {project.images.map((image, index) => (
                     <CarouselItem key={index}>
                       <div className="relative aspect-video bg-card">
+                        {/* Loading state */}
                         {!loadedImages[image] && !errorImages[image] && (
-                          <div className="absolute inset-0 bg-card animate-pulse" />
+                          <div className="absolute inset-0 flex items-center justify-center bg-card">
+                            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+                          </div>
                         )}
+                        
+                        {/* Image */}
                         <img
                           src={image}
                           alt={`${project.title} - Imagem ${index + 1}`}
@@ -54,9 +85,18 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                           onLoad={() => handleImageLoad(image)}
                           onError={() => handleImageError(image)}
                         />
+                        
+                        {/* Error state */}
                         {errorImages[image] && (
-                          <div className="absolute inset-0 flex items-center justify-center text-destructive">
-                            Erro ao carregar imagem
+                          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-card/80 backdrop-blur-sm">
+                            <AlertCircle className="w-8 h-8 text-destructive" />
+                            <p className="text-destructive font-medium">Erro ao carregar imagem</p>
+                            <button
+                              onClick={() => retryImage(image)}
+                              className="px-3 py-1 text-sm bg-primary text-white rounded-full hover:bg-primary/90 transition-colors"
+                            >
+                              Tentar novamente
+                            </button>
                           </div>
                         )}
                       </div>
@@ -66,6 +106,11 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                 <CarouselPrevious className="left-2" />
                 <CarouselNext className="right-2" />
               </Carousel>
+              
+              {/* Image counter */}
+              <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs text-white">
+                {currentImageIndex + 1} / {project.images.length}
+              </div>
             </div>
           )}
           
