@@ -11,7 +11,7 @@ export interface Project {
   showInModal?: boolean;
 }
 
-const BASE_IMAGE_PATH = "/";
+const BASE_IMAGE_PATH = "";
 
 export const projects: Project[] = [
   {
