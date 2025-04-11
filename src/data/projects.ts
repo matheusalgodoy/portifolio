@@ -3,10 +3,12 @@ export interface Project {
   title: string;
   description: string;
   image: string;
+  images?: string[];
   tags: string[];
   link?: string;
   featured?: boolean;
   isMobileApp?: boolean;
+  showInModal?: boolean;
 }
 
 export const projects: Project[] = [
@@ -29,16 +31,6 @@ export const projects: Project[] = [
     link: "https://barbeariaatualizada.vercel.app"
   },
   {
-    id: "5",
-    title: "Tarefas Diárias - App iOS",
-    description: "Aplicativo mobile para gerenciamento de tarefas diárias desenvolvido para iOS. Interface clean e minimalista com tema escuro, permitindo adicionar, gerenciar e concluir tarefas de forma intuitiva.",
-    image: "/images/tarefas-diarias.png",
-    tags: ["Swift", "iOS", "UIKit", "Mobile App", "Task Management"],
-    featured: true,
-    isMobileApp: true,
-    link: "https://cybertasks.vercel.app"
-  },
-  {
     id: "3",
     title: "SafeVault - Em Desenvolvimento",
     description: "Gerenciador de senhas seguro que permite organizar credenciais pessoais e profissionais em áreas distintas. Interface intuitiva para adicionar, categorizar e acessar suas informações de forma segura e eficiente.",
@@ -54,5 +46,45 @@ export const projects: Project[] = [
     image: "/images/business-finder.png",
     tags: ["React", "API REST", "Geolocalização", "Filtros Avançados", "Base de Dados Empresarial"],
     featured: false
+  },
+  {
+    id: "5",
+    title: "Tarefas Diárias - App iOS",
+    description: "Aplicativo mobile para gerenciamento de tarefas diárias desenvolvido para iOS. Interface clean e minimalista com tema escuro, permitindo adicionar, gerenciar e concluir tarefas de forma intuitiva.",
+    image: "/images/tarefas-diarias.png",
+    tags: ["Swift", "iOS", "UIKit", "Mobile App", "Task Management"],
+    featured: true,
+    isMobileApp: true,
+    link: "https://cybertasks.vercel.app"
+  },
+  {
+    id: "6",
+    title: "Portfólio Lucas Godoy - Arquiteto e Urbanista",
+    description: "Portfólio de um arquiteto e urbanista, com informações sobre projetos, serviços e contato. Interface moderna e responsiva para uma experiência de usuário excepcional. O projeto inclui uma galeria de imagens que demonstra diversos trabalhos realizados, desde projetos residenciais até comerciais, destacando a versatilidade e qualidade do profissional.",
+    image: "/images/l1.png",
+    images: [
+      "/images/l1.png",
+      "/images/l2.png",
+      "/images/l3.png",
+      "/images/l4.png",
+      "/images/l5.png",
+      "/images/l6.png"
+    ],
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Portfólio"],
+    featured: false,
+    showInModal: true
   }
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
