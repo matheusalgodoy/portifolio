@@ -124,6 +124,19 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               </span>
             ))}
           </div>
+          
+          {project.link && (
+            <div className="mt-4">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors"
+              >
+                Visitar site do projeto
+              </a>
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>

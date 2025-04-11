@@ -75,7 +75,8 @@ export const projects: Project[] = [
     ],
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Portfólio"],
     featured: false,
-    showInModal: true
+    showInModal: true,
+    link: "https://studiowhis.vercel.app"
   }
 ];
 
