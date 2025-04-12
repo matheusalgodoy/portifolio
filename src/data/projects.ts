@@ -67,7 +67,23 @@ export const projects: Project[] = [
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Portfólio"],
     featured: true,
     link: "https://estudio-whis.vercel.app"
+  },
+  {
+    id: "7",
+    title: "Modelo Portfólio Europeu - Arquiteto e Urbanista",
+    description: "Modelo de portfólio de um arquiteto e urbanista, com informações sobre projetos, serviços e contato. Interface moderna e responsiva para uma experiência de usuário excepcional. O projeto inclui uma galeria de imagens que demonstra diversos trabalhos realizados, desde projetos residenciais até comerciais, destacando a versatilidade e qualidade do profissional.",
+    image: `${BASE_IMAGE_PATH}/images/europortfolio.png`,
+    tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Portfólio"],
+    featured: true,
+    link: "https://model-europortfolio.vercel.app"
   }
+
+
+
+
+
+
+
 ];
 
 
