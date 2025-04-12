@@ -63,9 +63,9 @@ export const projects: Project[] = [
     id: "6",
     title: "Portfólio Lucas Godoy - Arquiteto e Urbanista",
     description: "Portfólio de um arquiteto e urbanista, com informações sobre projetos, serviços e contato. Interface moderna e responsiva para uma experiência de usuário excepcional. O projeto inclui uma galeria de imagens que demonstra diversos trabalhos realizados, desde projetos residenciais até comerciais, destacando a versatilidade e qualidade do profissional.",
-    image: `${BASE_IMAGE_PATH}/images/lucasgodoy.png`,
+    image: `${BASE_IMAGE_PATH}/images/lucasgodoy.jpg`,
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Portfólio"],
-    featured: false,
+    featured: true,
     link: "https://estudio-whis.vercel.app"
   }
 ];
