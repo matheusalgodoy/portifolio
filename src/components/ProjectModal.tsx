@@ -114,15 +114,25 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             </div>
           )}
           
-          <div className="flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-1 text-sm rounded-full bg-primary/10 text-primary"
-              >
-                {tag}
-              </span>
-            ))}
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-wrap gap-2">
+              {project.tags.filter(tag => tag !== "Portfólio").map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2 py-1 text-sm rounded-full bg-primary/10 text-primary"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <a
+              href="https://studiowhis.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 text-sm font-medium text-white bg-primary rounded-full hover:bg-primary/90 transition-colors"
+            >
+              Portfólio
+            </a>
           </div>
           
           {project.link && (

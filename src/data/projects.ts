@@ -66,7 +66,7 @@ export const projects: Project[] = [
     image: `${BASE_IMAGE_PATH}/images/lucasgodoy.png`,
     tags: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Portfólio"],
     featured: false,
-    showInModal: true
+    link: "https://estudio-whis.vercel.app"
   }
 ];
 

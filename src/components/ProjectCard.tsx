@@ -264,7 +264,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               </a>
             )}
             
-            {project.showInModal && !project.link && (
+            {project.showInModal && (
               <button
                 className={cn(
                   "inline-flex items-center text-white font-medium transform transition-all duration-200",
@@ -273,32 +273,6 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               >
                 Ver detalhes <ArrowRight className="ml-1 h-4 w-4" />
               </button>
-            )}
-            
-            {project.showInModal && project.link && (
-              <div className={cn(
-                "flex flex-col gap-2 transform transition-all duration-200",
-                isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              )}>
-                <button
-                  className="inline-flex items-center text-white font-medium"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsModalOpen(true);
-                  }}
-                >
-                  Ver detalhes <ArrowRight className="ml-1 h-4 w-4" />
-                </button>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-white font-medium"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Visitar site <ArrowRight className="ml-1 h-4 w-4" />
-                </a>
-              </div>
             )}
           </div>
         </div>
